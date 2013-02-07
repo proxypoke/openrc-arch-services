@@ -10,6 +10,7 @@ depend() {
 
 start() {
 	ebegin "Starting Go documentation web server"
+    export GOPATH
 	start-stop-daemon --start --pidfile $PIDFILE --make-pidfile \
 		--user daemon:daemon --progress \
 		--background --exec $command -- -http=":$GODOC_PORT"
