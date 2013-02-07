@@ -1,0 +1,9 @@
+# /etc/openrc/conf.d/godoc: config file for /etc/openrc/init.d/godoc
+
+# Options for starting the godoc webserver.
+# See godoc -h for more info.
+
+# port to start the webserver on
+GODOC_PORT=6060
+# location of the pidfile (needed to daemonize godoc with start-stop-daemon)
+PIDFILE="/var/run/godoc.pid"

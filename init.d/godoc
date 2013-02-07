@@ -1,0 +1,24 @@
+#!/sbin/runscript
+
+name="Godoc Web Server"
+description="Browse the Go documentation in your webbrowser."
+command="/usr/bin/godoc"
+
+depend() {
+    need net
+}
+
+start() {
+	ebegin "Starting Go documentation web server"
+	start-stop-daemon --start --pidfile $PIDFILE --make-pidfile \
+		--user daemon:daemon --progress \
+		--background --exec $command -- -http=":$GODOC_PORT"
+	eend $? "Failed to start Go documentation web server"
+	einfo "Access the documentation at localhost:$GODOC_PORT"
+}
+
+stop() {
+	ebegin "Stopping Go documentation web server"
+    start-stop-daemon --stop --pidfile $PIDFILE
+	eend $? "Failed to stop Go documentation web server"
+}
